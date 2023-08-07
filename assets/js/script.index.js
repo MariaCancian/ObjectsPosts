@@ -30,41 +30,47 @@ function savePost() {
         if (title && resume && publisher && date) {
             storePost(title, resume, publisher, date);
             cleanFields();
-        } else {
-            if (title && resume && publisher && date) {
-                posts[indexPost] = [
-                    title,
-                    resume,
-                    publisher,
-                    date
-                ];
+        }
+    } else {
+        if (title && resume && publisher && date) {
+            posts[indexPost] = {
+                title,
+                resume,
+                publisher,
+                date
+            };
 
-                showPosts();
-                indexPost = -1;
-                cleanFields();
-            }
+            showPosts();
+            indexPost = -1;
+            cleanFields();
         }
     }
 }
 
-    function storePost(title, resume, publisher, date) {
-        const post = {
-            title,
-            resume,
-            publisher,
-            date
-        };
 
-        posts.push(post);
-        showPosts();
+function storePost(title, resume, publisher, date) {
+    const post = {
+        title,
+        resume,
+        publisher,
+        date
+    };
+
+    posts.push(post);
+    showPosts();
+}
+
+function showPosts() {
+    document.getElementById("list").classList.remove("hidden")
+    let showContent = "";
+
+    if (posts == 0) {
+        document.getElementById("list").classList.add("hidden")
     }
 
-    function showPosts() {
-        let showContent = "";
+    posts.forEach((post, index) => {
 
-        posts.forEach((post, index) => {
-
-            showContent += `
+        showContent += `
         <div class= "post">
         <h2>${post.title}</h2>
         <p><srong>Resumo:</strong>${post.resume}</p>
@@ -74,30 +80,32 @@ function savePost() {
         <button onclick ='editPost(${index})'>Editar</button>
         <button onclick ='removePost(${index})'>Remover</button>
         
-    </div>`;
-        })
-        document.getElementById('list').innerHTML = showContent;
-    }
+    </div>
+    `;
+    })
+    document.getElementById('list').innerHTML = showContent;
+}
 
-    function cleanFields() {
-        document.getElementById("title").value = "";
-        document.getElementById("resume").value = "";
-        document.getElementById("publisher").value = "";
-        document.getElementById("date").value = "";
-    }
+function cleanFields() {
+    document.getElementById("title").value = "";
+    document.getElementById("resume").value = "";
+    document.getElementById("publisher").value = "";
+    document.getElementById("date").value = "";
+}
 
-    function editPost(index) {
-        const post = posts[index];
-        indexPost = index;
-        document.getElementById("title").value = post.title;
-        document.getElementById("resume").value = post.title;
-        document.getElementById("publisher").value = post.title;
-        document.getElementById("date").value = post.title;
-    }
+function editPost(index) {
+    indexPost = index;
+    const post = posts[index];
 
-    function removePost(index){
-        posts.splice(index, 1);
+    document.getElementById("title").value = post.title;
+    document.getElementById("resume").value = post.resume;
+    document.getElementById("publisher").value = post.publisher;
+    document.getElementById("date").value = post.date;
+}
 
-        showPosts();
-    }
+function removePost(index) {
+    posts.splice(index, 1);
+
+    showPosts();
+}
 

@@ -7,7 +7,9 @@
 
 body {
     background-color: #f0f0f0;
+    
 }
+
 
 main {
     height: 100vh;
@@ -15,14 +17,15 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 3.5rem;
 }
 
 h1 {
     text-align: center;
-    color: #d30000;
+    color: black;
 }
 
-#postForm {
+#Form {
     max-width: 500px;
     width: 100%;
     padding: 20px;
@@ -46,7 +49,7 @@ textarea {
 }
 
 button {
-    background-color: #d30000;
+    background-color:cadetblue ;
     color: #ffffff;
     cursor: pointer;
     width: 100%;
@@ -55,7 +58,7 @@ button {
 }
 
 button:hover {
-    background-color: #a00000;
+    background-color: rgb(167, 228, 231);
 }
 
 #list {
@@ -96,4 +99,16 @@ button:hover {
 
 .hidden {
     display: none;
+}
+
+#form2{
+  
+    display: flex;
+    flex-direction: column;
+   
+}
+
+#form1{
+    position: fixed;
+    right: 60%;
 }
